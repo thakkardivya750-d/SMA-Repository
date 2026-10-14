@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Social Media Engagement Rate Calculator - calculate and compare engagement across social platforms.">
+  <title>EngageIQ | Engagement Rate Calculator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#"><span class="brand-mark">e</span><span>Engage<span class="brand-light">IQ</span><small>CREATOR ANALYTICS</small></span></a>
+      <div class="nav-label">WORKSPACE</div>
+      <button class="nav-item active" data-view="calculator"><span class="nav-icon">◈</span> Calculator</button>
+      <button class="nav-item" data-view="history"><span class="nav-icon">◷</span> Calculation history <span class="nav-count" id="historyCount">0</span></button>
+      <button class="nav-item" data-view="guide"><span class="nav-icon">✳</span> Learn the metrics</button>
+      <div class="sidebar-bottom">
+        <div class="help-card"><div class="help-icon">✦</div><strong>Make every post count.</strong><p>Understand the signals behind your social performance.</p><button id="tipsBtn">Explore tips <span>↗</span></button></div>
+        <div class="profile"><div class="avatar">S</div><div><strong>Student Project</strong><small>Local workspace</small></div><span class="online-dot"></span></div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="mobile-menu" id="menuBtn" aria-label="Open menu">☰</button>
+        <div class="breadcrumbs">Workspace <span>/</span> <strong id="crumb">Calculator</strong></div>
+        <div class="top-actions"><span class="status-dot"></span><span class="saved-label">Runs in your browser</span><button class="icon-btn" id="themeBtn" title="Toggle theme">☼</button></div>
+      </header>
+
+      <section class="page-view" id="calculatorView">
+        <div class="welcome-row">
+          <div><div class="eyebrow"><span class="eyebrow-line"></span> SOCIAL PERFORMANCE TOOL</div><h1>Social media, <span>made measurable.</span></h1><p class="subtitle">Calculate engagement, compare platforms, and turn interactions into insights.</p></div>
+          <div class="date-chip"><span class="date-dot"></span> Your analytics workspace</div>
+        </div>
+
+        <div class="hero-strip">
+          <div class="hero-copy"><div class="hero-tag">ENGAGEMENT RATE</div><h2>Go beyond the likes.</h2><p>See how actively your audience responds to your content with a clear, consistent engagement rate.</p><button class="hero-link" id="demoBtn">Try sample data <span>→</span></button></div>
+          <div class="hero-art" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="art-card art-card-main"><span class="art-caption">ENGAGEMENT</span><strong>4.82%</strong><span class="art-up">↗ +12.4%</span><div class="mini-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div><div class="float-bubble bubble-heart">♥ <b>1.2k</b></div><div class="float-bubble bubble-chat">▤ <b>248</b></div><div class="float-bubble bubble-star">✦</div></div>
+        </div>
+
+        <div class="section-heading"><div><h2>Calculate your rate</h2><p>Enter the numbers from a post or campaign.</p></div><span class="step-label"><span>01</span> INPUT DATA</span></div>
+        <div class="workspace-grid">
+          <section class="panel form-panel">
+            <div class="panel-heading"><div class="panel-icon purple">◎</div><div><h3>Post details</h3><p>Choose a platform and add your metrics.</p></div></div>
+            <form id="calcForm">
+              <label for="platform">Social media platform</label>
+              <div class="select-wrap"><select id="platform"><option value="Instagram">Instagram</option><option value="TikTok">TikTok</option><option value="Facebook">Facebook</option><option value="YouTube">YouTube</option><option value="X">X (Twitter)</option><option value="LinkedIn">LinkedIn</option><option value="Other">Other</option></select><span>⌄</span></div>
+              <div class="field-row"><div class="field"><label for="followers">Followers / audience size <span class="required">*</span></label><input id="followers" type="number" min="1" step="1" placeholder="e.g. 12500" required><small>Total followers at the time of posting</small></div><div class="field"><label for="likes">Likes <span class="required">*</span></label><input id="likes" type="number" min="0" step="1" placeholder="e.g. 860" required></div></div>
+              <div class="field-row"><div class="field"><label for="comments">Comments</label><input id="comments" type="number" min="0" step="1" placeholder="e.g. 74" value="0"></div><div class="field"><label for="shares">Shares</label><input id="shares" type="number" min="0" step="1" placeholder="e.g. 32" value="0"></div></div>
+              <div class="field-row"><div class="field"><label for="saves">Saves</label><input id="saves" type="number" min="0" step="1" placeholder="e.g. 55" value="0"></div><div class="field"><label for="reach">Reach <span class="optional">(optional)</span></label><input id="reach" type="number" min="0" step="1" placeholder="e.g. 9800"><small>Used for reach-based rate when entered</small></div></div>
+              <div class="field"><label for="postName">Post / campaign name <span class="optional">(optional)</span></label><input id="postName" type="text" maxlength="70" placeholder="e.g. Summer launch reel"></div>
+              <div class="form-actions"><button type="reset" class="btn-secondary" id="resetBtn">Clear fields</button><button type="submit" class="btn-primary"><span>Calculate engagement</span><span>→</span></button></div>
+              <p class="form-error" id="formError" role="alert"></p>
+            </form>
+          </section>
+
+          <section class="results-column">
+            <div class="result-panel" id="resultPanel">
+              <div class="result-top"><div><div class="result-overline">YOUR ENGAGEMENT RATE</div><h3 id="resultTitle">Waiting for your data</h3></div><div class="result-symbol">↗</div></div>
+              <div class="result-number"><span id="rateValue">—</span><span class="percent">%</span></div>
+              <p class="result-caption" id="resultCaption">Fill in the form and calculate to see your result.</p>
+              <div class="result-divider"></div>
+              <div class="result-stats"><div><span>Total interactions</span><strong id="totalInteractions">—</strong></div><div><span>Audience size</span><strong id="audienceValue">—</strong></div></div>
+              <div class="meter-label"><span>Engagement benchmark</span><strong id="benchmarkLabel">Awaiting data</strong></div><div class="meter"><span id="meterFill"></span></div>
+              <div class="result-foot"><span class="tiny-check">✓</span> <span id="benchmarkText">Your result will appear here.</span></div>
+            </div>
+            <div class="formula-card"><div class="formula-head"><div class="formula-icon">ƒx</div><div><h3>How it's calculated</h3><p>Transparent formula, no hidden scores.</p></div></div><div class="formula"><span>Total interactions</span><b>÷</b><span>Followers</span><b>×</b><span>100</span></div><p class="formula-note">Interactions = likes + comments + shares + saves. If reach is entered, you can also view the reach-based rate.</p><button class="text-btn" id="formulaToggle">Show reach-based formula <span>＋</span></button><div class="reach-formula hidden" id="reachFormula">Interactions ÷ Reach × 100. This can better reflect exposure when a post reaches only a portion of your followers.</div></div>
+          </section>
+        </div>
+
+        <section class="insights-section">
+          <div class="section-heading compact"><div><h2>Quick insights</h2><p>A simple snapshot of what your numbers mean.</p></div><span class="step-label"><span>02</span> INTERPRET</span></div>
+          <div class="insight-grid"><article class="insight-card"><div class="insight-icon peach">♡</div><div><h3>Quality over quantity</h3><p>Comments, shares, and saves can signal deeper interest than likes alone.</p></div></article><article class="insight-card"><div class="insight-icon blue">◉</div><div><h3>Use one method consistently</h3><p>Follower-based and reach-based rates answer different questions. Avoid mixing them in comparisons.</p></div></article><article class="insight-card"><div class="insight-icon green">↗</div><div><h3>Track trends over time</h3><p>Compare similar posts and formats to learn what resonates with your audience.</p></div></article></div>
+        </section>
+        <footer>EngageIQ <span>•</span> Student project demo <span>•</span> Calculations stay in this browser</footer>
+      </section>
+
+      <section class="page-view hidden" id="historyView">
+        <div class="welcome-row"><div><div class="eyebrow"><span class="eyebrow-line"></span> YOUR WORKSPACE</div><h1>Calculation <span>history.</span></h1><p class="subtitle">Review previous calculations saved in this browser.</p></div><button class="btn-primary" id="exportBtn">Export CSV ↗</button></div>
+        <div class="history-toolbar"><div><strong id="historySummary">0 calculations</strong><p>Your latest results appear first.</p></div><button class="btn-secondary" id="clearHistoryBtn">Clear history</button></div>
+        <div class="panel history-panel"><div class="table-wrap"><table><thead><tr><th>POST / CAMPAIGN</th><th>PLATFORM</th><th>RATE</th><th>INTERACTIONS</th><th>DATE</th><th></th></tr></thead><tbody id="historyBody"><tr><td colspan="6" class="empty-state">No calculations yet. Run your first calculation to see it here.</td></tr></tbody></table></div></div>
+        <footer>EngageIQ <span>•</span> History is stored locally on this device</footer>
+      </section>
+
+      <section class="page-view hidden" id="guideView">
+        <div class="welcome-row"><div><div class="eyebrow"><span class="eyebrow-line"></span> THE BASICS</div><h1>Learn the <span>metrics.</span></h1><p class="subtitle">A short guide to explaining your project and interpreting the result.</p></div></div>
+        <div class="guide-grid">
+          <article class="guide-card featured-guide"><div class="guide-number">01 / CORE FORMULA</div><h2>What is engagement rate?</h2><p>Engagement rate measures the share of an audience that interacted with a piece of content. It is commonly expressed as a percentage.</p><div class="big-formula">( Likes + Comments + Shares + Saves )<br><span>÷ Followers × 100</span></div></article>
+          <article class="guide-card"><div class="guide-number">02 / FOUNDER'S NOTE</div><h2>Follower-based rate</h2><p>Divides interactions by follower count. It is simple to calculate and useful for comparing posts from the same account when follower counts are similar.</p><div class="mini-example"><span>Example</span><strong>500 interactions ÷ 10,000 followers = 5%</strong></div></article>
+          <article class="guide-card"><div class="guide-number">03 / ALTERNATIVE</div><h2>Reach-based rate</h2><p>Divides interactions by the number of unique accounts reached. Use this when reach data is available and you want to understand response among people who saw the content.</p><div class="mini-example"><span>Example</span><strong>500 interactions ÷ 8,000 reach = 6.25%</strong></div></article>
+          <article class="guide-card"><div class="guide-number">04 / IMPORTANT</div><h2>Benchmarks are context-dependent</h2><p>There is no universal “good” rate. Results vary by platform, industry, audience size, format, and campaign objective. Treat the on-screen benchmark as a rough guide, not a grade.</p></article>
+          <article class="guide-card"><div class="guide-number">05 / PROJECT FLOW</div><h2>How this application works</h2><ol><li>Enter platform and post metrics.</li><li>Validate inputs and calculate interactions.</li><li>Calculate follower-based rate and, if possible, reach-based rate.</li><li>Display an interpretation and save the run locally.</li><li>Review history or export results to CSV.</li></ol></article>
+          <article class="guide-card"><div class="guide-number">06 / VIVA PREPARATION</div><h2>What can you explain?</h2><p><b>Input:</b> platform, followers, likes, comments, shares, saves, and optional reach.</p><p><b>Output:</b> engagement rate, total interactions, interpretation, and history.</p><p><b>Tools:</b> HTML, CSS, JavaScript, browser localStorage, and CSV export.</p></article>
+        </div>
+        <footer>EngageIQ <span>•</span> Learning guide</footer>
+      </section>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
